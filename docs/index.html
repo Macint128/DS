@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>닌텐도 DS</title>
+<!-- 홈 화면 아이콘 설정 -->
+<link rel="apple-touch-icon" href="icon.png" />
+<meta name="apple-mobile-web-app-title" content="DS" />
+<style>
+  body {
+    margin: 0;
+    background: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    user-select: none;
+  }
+
+  .screen {
+    width: 320px;
+    height: 240px;
+    background: #b0c4de;
+    border: 5px solid #000;
+    border-radius: 12px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px #000 inset;
+    position: relative;
+  }
+
+  #top-screen {
+    background: linear-gradient(135deg, #9cc4e4, #5577aa);
+  }
+
+  #bottom-screen {
+    background: #d0d8e8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* 버튼들 */
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+  }
+
+  button {
+    background: #333;
+    border: 3px solid #000;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 4px #111;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    user-select: none;
+  }
+
+  button:active {
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+
+  /* 터치패드 (아래 스크린 중앙) */
+  #touchpad {
+    background: #888;
+    border-radius: 10px;
+    height: 120px;
+    margin: 0 20px;
+  }
+</style>
+</head>
+<body>
+
+<div id="top-screen" class="screen">
+  <p style="padding: 10px; text-align:center; font-size: 24px; font-weight:bold;">DS 상단 화면</p>
+</div>
+
+<div id="bottom-screen" class="screen">
+  <div id="touchpad"></div>
+  <div class="buttons">
+    <button id="btn-a">A</button>
+    <button id="btn-b">B</button>
+    <button id="btn-x">X</button>
+    <button id="btn-y">Y</button>
+  </div>
+</div>
+
+<script>
+  const topScreen = document.getElementById('top-screen');
+
+  function showMessage(msg) {
+    topScreen.innerHTML = `<p style="padding: 10px; text-align:center; font-size: 24px; font-weight:bold;">${msg}</p>`;
+  }
+
+  ['a','b','x','y'].forEach(key => {
+    document.getElementById('btn-' + key).addEventListener('touchstart', e => {
+      e.preventDefault();
+      showMessage(key.toUpperCase() + ' 버튼 눌림!');
+    });
+  });
+</script>
+
+</body>
+</html>
